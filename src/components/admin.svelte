@@ -1,23 +1,20 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { goto } from '$app/navigation';
-	import { writable } from 'svelte/store';
-	import '../routes/api/login.js';
+	import { user } from '../stores'; // Import the global user store
 
-	const user = writable(null);
+	let usernameInput = '';
+	let passwordInput = '';
 
 	async function login(event: Event) {
 		event.preventDefault();
-		const username = (document.getElementById('username') as HTMLInputElement).value;
-		const password = (document.getElementById('password') as HTMLInputElement).value;
-
 		try {
 			const response = await fetch('/api/login', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json'
 				},
-				body: JSON.stringify({ username, password })
+				body: JSON.stringify({ username: usernameInput, password: passwordInput })
 			});
 
 			if (!response.ok) {
@@ -26,6 +23,13 @@
 
 			let data = await response.json();
 			user.set(data.user);
+			// Optional: Redirect on successful login
+			if (data.user) {
+				// Clear form fields after successful login
+				usernameInput = '';
+				passwordInput = '';
+				goto('/adminOnly'); // Or your desired authenticated route
+			}
 		} catch (err) {
 			console.error('Failed to login or parse response as JSON', err);
 			return;
@@ -49,11 +53,17 @@
 					<form use:enhance method="POST" on:submit|preventDefault={login}>
 						<fieldset class="form-group">
 							<label for="username">Username</label>
-							<input type="username" class="form-control" id="username" placeholder="username" />
+							<input
+								type="text"
+								class="form-control"
+								id="username"
+								placeholder="username"
+								bind:value={usernameInput}
+							/>
 						</fieldset>
 						<fieldset class="form-group">
 							<label for="password">Password</label>
-							<input type="password" class="form-control" id="password" placeholder="Password" />
+							<input type="password" class="form-control" id="password" placeholder="Password" bind:value={passwordInput} />
 						</fieldset>
 						<br />
 						<div class="col">
