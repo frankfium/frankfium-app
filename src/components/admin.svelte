@@ -45,7 +45,7 @@
 	<div id="HideOnMobile">
 		<div class="container mt-2">
 			<div class="custom-container">
-				<div class="col md-3" />
+				<div class="col md-3"></div>
 				<div class="col md-3">
 					<h2>admin login</h2>
 					<br />

@@ -1,5 +1,9 @@
 import { json } from '@sveltejs/kit';
+import { env } from '$env/dynamic/private';
 import type { RequestHandler } from './$types';
+
+const envUsername = env['user'];
+const envPassword = env['password'];
 
 export const POST: RequestHandler = async ({ request, cookies }) => {
     let body;
@@ -17,7 +21,11 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
         return json({ status: 'Bad Request', message: 'Username and password must be strings' }, { status: 400 });
     }
 
-    if (username !== 'test' || password !== 'test') {
+    if (typeof envUsername !== 'string' || typeof envPassword !== 'string') {
+        return json({ status: 'Server Error', message: 'Authentication is not configured' }, { status: 500 });
+    }
+
+    if (username !== envUsername || password !== envPassword) {
         return json({ status: 'Unauthorized' }, { status: 401 });
     }
 

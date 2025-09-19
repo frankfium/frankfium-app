@@ -20,7 +20,7 @@
 					<div class="row">
 						<a href={resume} target="_blank">Resume</a>
 						<a href="https://github.com/frankfium" target="_blank">GitHub</a>
-						<a href="https://www.linkedin.com/in/frankpop10/" target="_blank">LinkedIn</a>
+						<a href="https://www.linkedin.com/in/frankfium/" target="_blank">LinkedIn</a>
 						<a href="mailto:fiumara.frank10@gmail.com?subject=Insert heart-felt message.">Email</a>
 						<a href="{base}/admin">Admin</a>
 					</div>

@@ -6,7 +6,7 @@
 <div class="app">
 	
 	<main>
-			<div class="cursor" />
+			<div class="cursor"></div>
 
 		<slot />
 
