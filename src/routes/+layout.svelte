@@ -2,14 +2,12 @@
 	import './../styles/styles.css';
 	import resume from '../lib/FranksResume.pdf';
     import { base } from '$app/paths';
+	import CustomCursor from '../lib/CustomCursor.svelte';
 </script>
 <div class="app">
-	
+	<CustomCursor />
 	<main>
-			<div class="cursor"></div>
-
 		<slot />
-
 	</main>
 </div>
 

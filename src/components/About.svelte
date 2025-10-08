@@ -24,6 +24,10 @@
           <i class="fa-regular fa-envelope fa-shake-hover"></i>
           Email
         </a>
+        <a href={`${base}/projects`}>
+          <i class="fa-solid fa-folder fa-bounce-hover"></i>
+          Projects
+        </a>
         <a href={`${base}/admin`} class="isDisabled">
           <i class="fa-solid fa-lock fa-flip-hover"></i>
           Admin
